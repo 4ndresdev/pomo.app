@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useContext } from "react";
-import OnboardingContext from "../contexts/OnboardingContext";
+import OnboardingContext from "@/contexts/OnboardingContext";
 
 const useNameStep = () => {
   const nameRef = useRef(null);
