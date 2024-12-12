@@ -1,8 +1,8 @@
 import { createContext, useCallback, useState } from "react";
 import PropTypes from "prop-types";
-import NameStep from "../components/steps/NameStep";
-import ProfileStep from "../components/steps/ProfileStep";
-import WallpaperStep from "../components/steps/WallpaperStep";
+import NameStep from "@/components/steps/NameStep";
+import ProfileStep from "@/components/steps/ProfileStep";
+import WallpaperStep from "@/components/steps/WallpaperStep";
 
 const OnboardingContext = createContext();
 

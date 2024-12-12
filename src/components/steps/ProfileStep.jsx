@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import ButtonWithIcon from "../buttons/ButtonWithIcon";
+import ButtonWithIcon from "@/components/buttons/ButtonWithIcon";
 
 const NameStep = () => {
   return (

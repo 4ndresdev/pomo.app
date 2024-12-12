@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import NameStep from "../components/steps/NameStep";
+import NameStep from "@/components/steps/NameStep";
 
 const ONBOARDING_STEPS = [
   {
