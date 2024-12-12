@@ -7,8 +7,8 @@ const NameStep = () => {
     useNameStep();
   return (
     <div className="w-full h-full p-8 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms">
-      <div className="w-14 h-14 bg-white flex justify-center items-center rounded-md text-3xl shadow-inner-custom fade-in delay-500ms">
-        🪴
+      <div className="w-14 h-14 bg-white flex justify-center items-center rounded-md text-2xl shadow-inner-custom fade-in delay-500ms">
+        🍅
       </div>
       <h1 className="text-2xl font-medium text-center fade-in delay-1000ms">
         Let’s customize your experience
