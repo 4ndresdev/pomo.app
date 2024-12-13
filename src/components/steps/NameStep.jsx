@@ -16,16 +16,16 @@ const NameStep = () => {
       <p className="text-center text-sm text-gray-500 fade-in delay-1000ms">
         Please enter your name ✏️
       </p>
-      <h1
+      <div
         ref={nameRef}
         className="w-56 text-2xl font-bold text-center focus:outline-none focus:ring-0 bg-transparent placeholder_name fade-in delay-1500ms"
         role="textbox"
-        aria-label="Name input field"
+        aria-label="Enter your name"
         contentEditable
         onInput={handleChange}
         onKeyDown={handleKeyDown}
         suppressContentEditableWarning={true}
-      ></h1>
+      ></div>
       <div className="mt-5 fade-in delay-1500ms">
         <ButtonWithIcon
           isDisabled={isDisabled}
