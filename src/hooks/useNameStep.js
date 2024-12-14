@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import OnboardingContext from "@/contexts/OnboardingContext";
+import { setUserData } from "@/services/localStorageService";
 
 const useNameStep = () => {
   const nameRef = useRef(null);
@@ -13,7 +14,11 @@ const useNameStep = () => {
   }, []);
 
   const handleNext = useCallback(() => {
-    console.log(name);
+    if (name.trim().length === 0) {
+      console.error("Name is required");
+      return;
+    }
+    setUserData("name", name.trim());
     setStep((step) => step + 1);
   }, [name, setStep]);
 

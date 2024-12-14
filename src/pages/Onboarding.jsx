@@ -28,7 +28,7 @@ const Onboarding = () => {
           value={currentStep.progress}
         />
       </div>
-      <small className="absolute bottom-0 z-10 w-full text-center mb-8">
+      <small className="absolute bottom-0 z-10 w-full text-small text-center mb-8">
         Developed with ❤️️ by <b>4ndresdev</b>
       </small>
     </div>

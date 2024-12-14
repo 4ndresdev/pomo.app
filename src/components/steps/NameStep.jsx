@@ -13,9 +13,9 @@ const NameStep = () => {
       <h1 className="text-2xl font-medium text-center fade-in delay-1000ms">
         Let’s customize your experience
       </h1>
-      <p className="text-center text-sm text-gray-500 fade-in delay-1000ms">
+      <small className="text-center text-sm text-gray-500 fade-in delay-1000ms">
         Please enter your name ✏️
-      </p>
+      </small>
       <div
         ref={nameRef}
         className="w-56 text-2xl font-bold text-center focus:outline-none focus:ring-0 bg-transparent placeholder_name fade-in delay-1500ms"
