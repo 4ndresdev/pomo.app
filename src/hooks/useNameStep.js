@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import OnboardingContext from "@/contexts/OnboardingContext";
 import { setUserData } from "@/services/localStorageService";
+import toast from "react-hot-toast";
 
 const useNameStep = () => {
   const nameRef = useRef(null);
@@ -15,7 +16,9 @@ const useNameStep = () => {
 
   const handleNext = useCallback(() => {
     if (name.trim().length === 0) {
-      console.error("Name is required");
+      toast.error("Name is required", {
+        duration: 4000,
+      });
       return;
     }
     setUserData("name", name.trim());

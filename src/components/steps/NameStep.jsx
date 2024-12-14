@@ -18,7 +18,7 @@ const NameStep = () => {
       </small>
       <div
         ref={nameRef}
-        className="w-56 text-2xl font-bold text-center focus:outline-none focus:ring-0 bg-transparent placeholder_name fade-in delay-1500ms"
+        className="w-56 text-2xl font-bold text-center focus:outline-none focus:ring-0 bg-transparent placeholder_name fade-in delay-1500ms rounded-md py-2"
         role="textbox"
         aria-label="Enter your name"
         contentEditable
