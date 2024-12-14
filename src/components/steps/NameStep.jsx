@@ -3,8 +3,14 @@ import useNameStep from "@/hooks/useNameStep";
 import ButtonWithIcon from "@/components/buttons/ButtonWithIcon";
 
 const NameStep = () => {
-  const { nameRef, handleChange, handleKeyDown, isDisabled, handleNext } =
-    useNameStep();
+  const {
+    nameRef,
+    handleChange,
+    handleKeyDown,
+    isDisabled,
+    handleNext,
+    error,
+  } = useNameStep();
   return (
     <div className="w-full h-full p-8 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms">
       <div className="w-14 h-14 bg-white flex justify-center items-center rounded-md text-2xl shadow-inner-custom fade-in delay-500ms">
@@ -13,8 +19,12 @@ const NameStep = () => {
       <h1 className="text-2xl font-medium text-center fade-in delay-1000ms">
         Let’s customize your experience
       </h1>
-      <small className="text-center text-sm text-gray-500 fade-in delay-1000ms">
-        Please enter your name ✏️
+      <small
+        className={`text-center text-sm ${
+          error ? "text-red-400" : "text-gray-500"
+        } fade-in delay-1000ms`}
+      >
+        {error ? error : "Please enter your name ✏️"}
       </small>
       <div
         ref={nameRef}

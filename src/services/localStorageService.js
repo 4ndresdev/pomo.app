@@ -9,8 +9,13 @@ const defaultData = {
 };
 
 export const fetchStoredData = () => {
-  const data = localStorage.getItem(STORAGE_KEY);
-  return data ? JSON.parse(data) : defaultData;
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : defaultData;
+  } catch (error) {
+    console.error("Error fetching data from local storage", error);
+    return defaultData;
+  }
 };
 
 export const saveData = (data) => {
@@ -36,7 +41,7 @@ export const updatedTaskStatus = (id, completed) => {
   const data = fetchStoredData();
   const tasks = data.tasks.map((task) => {
     if (task.id === id) {
-      task.completed = completed;
+      task.completed = !completed;
     }
     return task;
   });
