@@ -15,7 +15,7 @@ const Onboarding = () => {
         radius="none"
         className="w-screen h-screen object-cover"
       />
-      <div className="absolute z-10 w-[95%] max-w-sm">
+      <div className="absolute z-10 w-[95%] max-w-sm mt-[-5rem]">
         {currentStep.component}
         <Progress
           className="w-60 max-w-xs mx-auto mt-8 font-sans text-white"
