@@ -1,18 +1,15 @@
 import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import OnboardingContext from "@/contexts/OnboardingContext";
-import { setUserData } from "@/services/localStorageService";
+import { setUserData, getUserData } from "@/services/localStorageService";
+import useSound from "use-sound";
+import keyPressSound from "@/assets/sounds/keyPressSound.wav";
 
 const useNameStep = () => {
   const nameRef = useRef(null);
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const { setStep } = useContext(OnboardingContext);
-
-  useEffect(() => {
-    if (nameRef.current) {
-      nameRef.current.focus();
-    }
-  }, []);
+  const [play] = useSound(keyPressSound, { volume: 0.25 });
 
   const handleNext = useCallback(() => {
     if (name.trim().length === 0) {
@@ -23,20 +20,35 @@ const useNameStep = () => {
     setStep((step) => step + 1);
   }, [name, setStep]);
 
-  const handleChange = useCallback((e) => {
-    setError("");
-    setName(e.target.innerText.trim());
-  }, []);
+  const handleChange = useCallback(
+    (e) => {
+      play();
+      setError("");
+      setName(e.target.innerText.trim());
+    },
+    [play]
+  );
 
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
+        play();
         handleNext();
       }
     },
-    [handleNext]
+    [handleNext, play]
   );
+
+  useEffect(() => {
+    const storedName = getUserData("name");
+    if (storedName) {
+      nameRef.current.innerText = storedName;
+      setName(storedName);
+    } else {
+      nameRef.current.focus();
+    }
+  }, []);
 
   const isDisabled = name.length === 0;
 

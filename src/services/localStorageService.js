@@ -28,6 +28,11 @@ export const setUserData = (key, value) => {
   saveData(data);
 };
 
+export const getUserData = (key) => {
+  const data = fetchStoredData();
+  return data[key];
+};
+
 export const addTask = (task) => {
   const data = fetchStoredData();
   if (!data.tasks) {
