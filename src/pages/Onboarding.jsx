@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Image } from "@nextui-org/image";
-import wallpaper from "@/assets/images/wallpaper.webp";
+import wallpaper from "@/assets/images/wallpapers/wallpaper.webp";
 import { Progress } from "@nextui-org/react";
 import OnboardingContext from "@/contexts/OnboardingContext";
 
