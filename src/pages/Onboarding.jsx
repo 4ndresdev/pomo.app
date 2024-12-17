@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Image } from "@nextui-org/image";
-import wallpaper from "@/assets/images/wallpapers/wallpaper.webp";
+import wallpaper from "@/assets/images/wallpapers/material.webp";
 import { Progress } from "@nextui-org/react";
 import OnboardingContext from "@/contexts/OnboardingContext";
 
@@ -28,7 +28,7 @@ const Onboarding = () => {
           value={currentStep.progress}
         />
       </div>
-      <small className="absolute bottom-0 z-10 w-full text-small text-center mb-8">
+      <small className="absolute bottom-0 z-10 w-full text-small text-center mb-8 text-white">
         Developed with ❤️️ by <b>4ndresdev</b>
       </small>
     </div>
