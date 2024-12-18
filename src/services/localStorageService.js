@@ -3,7 +3,7 @@ const STORAGE_KEY = "tomatifyData";
 const defaultData = {
   name: "",
   avatar: "",
-  wallpaper: "",
+  wallpaper: "material",
   isOnboardingCompleted: false,
   tasks: [],
 };
