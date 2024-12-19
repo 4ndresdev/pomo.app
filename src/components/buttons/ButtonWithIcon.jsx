@@ -8,6 +8,7 @@ const ButtonWithIcon = ({
   ariaLabel,
   size = "lg",
   isDisabled = false,
+  isLoading = false,
   onPress = () => {},
 }) => {
   return (
@@ -19,6 +20,7 @@ const ButtonWithIcon = ({
       variant={variant}
       color={color}
       onPress={onPress}
+      isLoading={isLoading}
     >
       {children}
     </Button>
@@ -32,6 +34,7 @@ ButtonWithIcon.propTypes = {
   ariaLabel: PropTypes.string,
   size: PropTypes.string,
   isDisabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onPress: PropTypes.func,
 };
 

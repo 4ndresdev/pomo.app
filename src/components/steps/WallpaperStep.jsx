@@ -8,6 +8,7 @@ import catiamatos from "@/assets/images/wallpapers/catiamatos.webp";
 import ocean from "@/assets/images/wallpapers/ocean.webp";
 import bridge from "@/assets/images/wallpapers/bridge.webp";
 import OnboardingContext from "@/contexts/OnboardingContext";
+import { useWallpaper } from "@/hooks/useWallpaper";
 
 const WALLPAPERS = [
   { id: "material", src: material, delay: "500ms" },
@@ -24,7 +25,7 @@ const WallpaperOption = ({ id, src, delay, selected, onClick }) => {
           selected ? "border-warning" : ""
         }`}
         src={src}
-        alt=""
+        alt={id}
         isBlurred
       />
     </div>
@@ -33,6 +34,7 @@ const WallpaperOption = ({ id, src, delay, selected, onClick }) => {
 
 const WallpaperStep = () => {
   const { updateWallpaper, wallpaper } = useContext(OnboardingContext);
+  const { handleBack, handleNext, loading } = useWallpaper();
   return (
     <div className="w-full h-full p-5 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms">
       <div className="w-full flex gap-2">
@@ -58,26 +60,39 @@ const WallpaperStep = () => {
           />
         ))}
       </div>
-      <div className="w-full flex justify-end mt-5 fade-in delay-1500ms gap-2">
-        <div className="rotate-180">
+      <div className="w-full flex justify-between items-center mt-5 fade-in delay-1500ms gap-2">
+        <div>
+          {loading && (
+            <small className="text-slate-500 fade-in delay-1000ms">
+              Setting up your profile...
+            </small>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <div className="rotate-180">
+            <ButtonWithIcon
+              variant="flat"
+              color="warning"
+              size="lg"
+              ariaLabel="Back step"
+              onPress={handleBack}
+              isDisabled={loading}
+            >
+              <ArrowRight strokeWidth={3} />
+            </ButtonWithIcon>
+          </div>
           <ButtonWithIcon
-            variant="flat"
-            color="warning"
+            variant="shadow"
+            color="primary"
             size="lg"
-            ariaLabel="Back step"
+            ariaLabel="Next step"
+            isDisabled={!wallpaper}
+            isLoading={loading}
+            onPress={handleNext}
           >
             <ArrowRight strokeWidth={3} />
           </ButtonWithIcon>
         </div>
-        <ButtonWithIcon
-          variant="shadow"
-          color="primary"
-          size="lg"
-          ariaLabel="Next step"
-          isDisabled={!wallpaper}
-        >
-          <ArrowRight strokeWidth={3} />
-        </ButtonWithIcon>
       </div>
     </div>
   );
