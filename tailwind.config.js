@@ -15,6 +15,12 @@ export default {
       colors: {
         primary: "#3ABBD1",
       },
+      backgroundImage: {
+        bridge: "url('@/assets/images/wallpapers/bridge.webp')",
+        catiamatos: "url('@/assets/images/wallpapers/catiamatos.webp')",
+        material: "url('@/assets/images/wallpapers/material.webp')",
+        ocean: "url('@/assets/images/wallpapers/ocean.webp')",
+      },
     },
   },
   darkMode: "class",
