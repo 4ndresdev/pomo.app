@@ -41,7 +41,7 @@ const FileUpload = ({ setSelectedFile }) => {
 
   if (loading) {
     return (
-      <div className="w-full h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition-colors">
+      <div className="w-full h-24 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition-colors">
         <small className="text-center line leading-relaxed text-md text-slate-500">
           Uploading file... ⌛
         </small>
@@ -52,7 +52,7 @@ const FileUpload = ({ setSelectedFile }) => {
   return (
     <div
       {...getRootProps({
-        className: `w-full h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+        className: `w-full h-24 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
           isDragActive ? "border-primary" : "border-slate-200"
         }`,
       })}

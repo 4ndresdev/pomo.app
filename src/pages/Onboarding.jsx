@@ -1,27 +1,23 @@
 import { useContext } from "react";
-import { Image } from "@nextui-org/image";
-import material from "@/assets/images/wallpapers/material.webp";
-import ocean from "@/assets/images/wallpapers/ocean.webp";
-import bridge from "@/assets/images/wallpapers/bridge.webp";
-import catiamatos from "@/assets/images/wallpapers/catiamatos.webp";
 import { Progress } from "@nextui-org/react";
 import OnboardingContext from "@/contexts/OnboardingContext";
 
-const wallPaperConfig = { ocean, catiamatos, material, bridge };
+const backgrounds = {
+  ocean: "bg-ocean",
+  catiamatos: "bg-catiamatos",
+  material: "bg-material",
+  bridge: "bg-bridge",
+};
 
 const Onboarding = () => {
   const { step, totalSteps, currentStep, wallpaper } =
     useContext(OnboardingContext);
 
   return (
-    <div className="w-screen h-svh overflow-hidden flex justify-center items-center">
-      <Image
-        alt="Natural landscape with a forest and lake from above"
-        src={wallPaperConfig[wallpaper] || material}
-        radius="none"
-        className="w-screen h-screen object-cover"
-      />
-      <div className="absolute z-10 w-[95%] max-w-sm mt-[-5rem]">
+    <div
+      className={`w-screen h-svh overflow-hidden flex justify-center items-center ${backgrounds[wallpaper]} bg-cover bg-center`}
+    >
+      <div className="absolute z-10 w-[95%] max-w-sm mt-[-2rem]">
         {currentStep.component}
         <Progress
           className="w-60 max-w-xs mx-auto mt-8 font-sans text-white"
