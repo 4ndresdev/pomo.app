@@ -9,7 +9,7 @@ export function FireDay({ day, active = false }) {
         !active && "grayscale"
       }`}
     >
-      <Image src={fire} width={30} />
+      <Image src={fire} width={25} />
       {day && <h1 className="text-white">{day}</h1>}
     </div>
   );

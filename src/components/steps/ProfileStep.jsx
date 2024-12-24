@@ -9,7 +9,7 @@ const ProfileStep = () => {
   const { handleBack, handleNext, selectedFile, setSelectedFile } =
     useProfileStep();
   return (
-    <div className="w-full h-full p-8 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms relative">
+    <div className="w-full h-full px-8 py-2 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms relative">
       <Avatar
         className="fade-in delay-1500ms mt-2"
         isBordered
@@ -30,7 +30,7 @@ const ProfileStep = () => {
       <div className="fade-in delay-1500ms w-full">
         <FileUpload setSelectedFile={setSelectedFile} />
       </div>
-      <div className="mt-3 fade-in delay-1500ms flex gap-2">
+      <div className="mt-2 fade-in delay-1500ms flex gap-2">
         <div className="rotate-180">
           <ButtonWithIcon
             variant="flat"

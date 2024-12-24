@@ -12,7 +12,7 @@ const NameStep = () => {
     error,
   } = useNameStep();
   return (
-    <div className="w-full h-full p-8 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms">
+    <div className="w-full h-full px-2 py-8 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms">
       <div className="w-14 h-14 bg-white flex justify-center items-center rounded-md text-2xl shadow-inner-custom fade-in delay-500ms">
         🍅
       </div>
@@ -36,7 +36,7 @@ const NameStep = () => {
         onKeyDown={handleKeyDown}
         suppressContentEditableWarning={true}
       ></div>
-      <div className="mt-5 fade-in delay-1500ms">
+      <div className="mt-2 fade-in delay-1500ms">
         <ButtonWithIcon
           isDisabled={isDisabled}
           variant="shadow"

@@ -31,8 +31,8 @@ export function Profile() {
           src={avatar || defaultAvatar}
         />
       </div>
-      <div className="absolute bottom-0 w-full p-5 flex justify-between items-center">
-        <div className="flex gap-2">
+      <div className="flex justify-between items-center p-5">
+        <div className="flex gap-2 items-center">
           <FireDay active day="M" />
           <FireDay active day="T" />
           <FireDay day="W" />
