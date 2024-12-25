@@ -12,9 +12,9 @@ const Dashboard = () => {
   const wallpaper = getUserData("wallpaper");
   return (
     <div
-      className={`w-screen h-svh overflow-hidden flex justify-center items-center ${backgrounds[wallpaper]} bg-cover bg-center`}
+      className={`w-screen min-h-svh flex justify-center items-center ${backgrounds[wallpaper]} bg-cover bg-center`}
     >
-      <div className="w-full h-full gap-5 py-10 px-5 xl:p-16 flex flex-col lg:flex-row">
+      <div className="w-full min-h-dvh gap-5 py-8 px-2 2xl:px-36 2xl:py-16 flex flex-col lg:flex-row">
         <div className="w-full gap-5 flex flex-col">
           <div className="w-full">
             <Profile />
@@ -23,14 +23,13 @@ const Dashboard = () => {
             <Profile />
           </div>
         </div>
-        <div className="w-full h-full">
+        <div className="w-full min-h-full">
           <Profile />
+          <p className="w-full text-xs text-center md:text-right text-white mt-2">
+            Developed with ❤️️ by <b>4ndresdev</b>
+          </p>
         </div>
       </div>
-      {/* Footer */}
-      <small className="absolute bottom-0 z-10 w-full text-center mb-3 lg:mb-5 text-white">
-        Developed with ❤️️ by <b>4ndresdev</b>
-      </small>
     </div>
   );
 };

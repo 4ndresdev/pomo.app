@@ -2,7 +2,7 @@ import { getUserData } from "@/services/localStorageService";
 import { Avatar } from "@nextui-org/avatar";
 import defaultAvatar from "@/assets/avatars/avatar.png";
 import { FireDay } from "@/components/ui/FireDay";
-import { CurrentDay } from "@/components/profile/CurrentDay";
+import { CurrentTask } from "@/components/profile/CurrentTask";
 
 const backgrounds = {
   ocean: "bg-ocean",
@@ -17,7 +17,7 @@ export function Profile() {
   const name = getUserData("name");
   return (
     <div
-      className={`w-full h-full ${backgrounds[wallpaper]} bg-cover bg-center rounded-2xl border-5 relative`}
+      className={`w-full h-full ${backgrounds[wallpaper]} bg-cover bg-center rounded-2xl border-5 border-white relative`}
     >
       <div className="flex justify-between items-center p-5">
         <div className="flex flex-col gap-1">
@@ -31,8 +31,8 @@ export function Profile() {
           src={avatar || defaultAvatar}
         />
       </div>
-      <div className="flex justify-between items-center p-5">
-        <div className="flex gap-2 items-center">
+      <div className="w-full flex justify-between items-center flex-col md:flex-row p-5">
+        <div className="w-full flex justify-between md:justify-stretch gap-2">
           <FireDay active day="M" />
           <FireDay active day="T" />
           <FireDay day="W" />
@@ -41,7 +41,9 @@ export function Profile() {
           <FireDay active day="S" />
           <FireDay day="S" />
         </div>
-        <CurrentDay />
+        <div className="mt-5 md:mt-0">
+          <CurrentTask />
+        </div>
       </div>
     </div>
   );
