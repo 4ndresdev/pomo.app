@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
-import ButtonWithIcon from "@/components/buttons/ButtonWithIcon";
+import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
 import { Avatar } from "@nextui-org/avatar";
 import avatar from "@/assets/avatars/avatar.png";
-import FileUpload from "@/components/FileUpload";
+import FileUpload from "@/components/ui/FileUpload";
 import { useProfileStep } from "@/hooks/useProfileStep";
 
 const ProfileStep = () => {

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ArrowRight } from "lucide-react";
-import ButtonWithIcon from "@/components/buttons/ButtonWithIcon";
+import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
 import { Image } from "@nextui-org/react";
 import material from "@/assets/images/wallpapers/material.webp";
 import catiamatos from "@/assets/images/wallpapers/catiamatos.webp";
