@@ -1,5 +1,6 @@
 import { getUserData } from "@/services/localStorageService";
 import { Profile } from "@/components/Profile/Profile";
+import { Timer } from "@/components/Timer/Timer";
 
 const backgrounds = {
   ocean: "bg-ocean",
@@ -20,7 +21,7 @@ const Dashboard = () => {
             <Profile />
           </div>
           <div className="w-full h-full">
-            <Profile />
+            <Timer />
           </div>
         </div>
         <div className="w-full min-h-full">

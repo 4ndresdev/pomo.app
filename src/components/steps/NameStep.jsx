@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import useNameStep from "@/hooks/useNameStep";
-import ButtonWithIcon from "@/components/buttons/ButtonWithIcon";
+import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
 
 const NameStep = () => {
   const {
