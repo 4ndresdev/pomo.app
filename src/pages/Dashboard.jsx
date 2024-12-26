@@ -1,6 +1,7 @@
 import { getUserData } from "@/services/localStorageService";
 import { Profile } from "@/components/Profile/Profile";
 import { Timer } from "@/components/Timer/Timer";
+import { Tasks } from "@/components/Tasks/Tasks";
 
 const backgrounds = {
   ocean: "bg-ocean",
@@ -25,10 +26,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="w-full min-h-full">
-          <Profile />
-          <p className="w-full text-xs text-center md:text-right text-white mt-2">
-            Developed with ❤️️ by <b>4ndresdev</b>
-          </p>
+          <Tasks />
         </div>
       </div>
     </div>
