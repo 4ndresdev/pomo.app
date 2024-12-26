@@ -17,12 +17,14 @@ export function Profile() {
   const name = getUserData("name");
   return (
     <div
-      className={`w-full h-full ${backgrounds[wallpaper]} bg-cover bg-center rounded-2xl border-5 border-white relative`}
+      className={`w-full h-full ${backgrounds[wallpaper]} bg-cover bg-center rounded-2xl shadow-2xl relative`}
     >
       <div className="flex justify-between items-center p-5">
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl text-white font-bold">Hello {name} 👋</h1>
-          <p className="text-md text-white">Welcome to tomatify</p>
+          <small className="text-sm text-white font-sans">
+            You do not have any task to do
+          </small>
         </div>
         <Avatar
           size="lg"

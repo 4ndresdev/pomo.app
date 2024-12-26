@@ -16,8 +16,8 @@ export function FireDay({ day, active = false }) {
 }
 
 FireDay.propTypes = {
-  day: PropTypes.number,
-  active: PropTypes.bool.isRequired,
+  day: PropTypes.string,
+  active: PropTypes.bool,
 };
 
 export default FireDay;
