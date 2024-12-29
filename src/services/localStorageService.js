@@ -5,6 +5,7 @@ const defaultData = {
   avatar: "",
   wallpaper: "material",
   isOnboardingCompleted: false,
+  isFullScreen: false,
   tasks: [],
 };
 
