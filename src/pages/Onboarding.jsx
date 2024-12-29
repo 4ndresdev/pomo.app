@@ -15,7 +15,7 @@ const Onboarding = () => {
 
   return (
     <div
-      className={`w-screen h-svh overflow-hidden flex justify-center items-center ${backgrounds[wallpaper]} bg-cover bg-center`}
+      className={`w-screen h-dvh overflow-hidden flex justify-center items-center ${backgrounds[wallpaper]} bg-cover bg-center`}
     >
       <div className="absolute z-10 w-[95%] max-w-sm mt-[-2rem]">
         {currentStep.component}

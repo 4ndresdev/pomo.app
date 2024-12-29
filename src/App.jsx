@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { Navigate } from "react-router";
 import { PrivateRoutes } from "@/router/PrivateRoutes";
 import { PublicRoutes } from "@/router/PublicRoutes";
+import { TimerProvider } from "./contexts/TimerContext";
 
 const App = () => {
   return (
@@ -26,8 +27,10 @@ const App = () => {
         path="/"
         element={
           <PrivateRoutes>
-            <Toaster />
-            <Dashboard />
+            <TimerProvider>
+              <Toaster />
+              <Dashboard />
+            </TimerProvider>
           </PrivateRoutes>
         }
       />

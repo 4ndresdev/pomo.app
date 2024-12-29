@@ -17,7 +17,7 @@ export function Profile() {
   const name = getUserData("name");
   return (
     <div
-      className={`w-full h-full ${backgrounds[wallpaper]} bg-cover bg-center rounded-2xl shadow-2xl relative`}
+      className={`w-full h-full ${backgrounds[wallpaper]} bg-cover bg-center rounded-2xl shadow-2xl border-5 border-white relative`}
     >
       <div className="flex justify-between items-center p-5">
         <div className="flex flex-col gap-1">
