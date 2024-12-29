@@ -10,7 +10,7 @@ export const PrivateRoutes = ({ children }) => {
   useEffect(() => {
     const storedSsOnboardingCompleted = getUserData("isOnboardingCompleted");
     if (!storedSsOnboardingCompleted) {
-      navigate("/onboarding");
+      navigate("/onboarding", { replace: true });
     } else {
       setLoading(false);
     }
