@@ -17,11 +17,11 @@ export function Timer() {
   const { isFullScreen, handleFullScreen } = useContext(TimerContext);
 
   const activeFullScreenClasses = isFullScreen
-    ? "fixed top-0 left-0 w-screen h-screen z-50 h-dvh"
-    : "w-full h-96 md:h-full border-5 border-white rounded-2xl relative";
+    ? "fixed top-0 left-0 w-screen h-screen z-50 h-svh"
+    : "w-full h-96 md:h-full border-5 border-white rounded-2xl shadow-xl relative";
   return (
     <div
-      className={`${backgrounds[wallpaper]} bg-cover bg-center shadow-xl flex flex-col justify-center items-center gap-5 ${activeFullScreenClasses}`}
+      className={`${backgrounds[wallpaper]} bg-cover bg-center flex flex-col justify-center items-center gap-5 ${activeFullScreenClasses}`}
     >
       <Tabs aria-label="" size="sm">
         <Tab key="focus" title="Focus 🔥" />

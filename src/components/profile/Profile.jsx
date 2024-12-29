@@ -38,9 +38,9 @@ export function Profile() {
           <FireDay active day="M" />
           <FireDay active day="T" />
           <FireDay day="W" />
-          <FireDay active day="T" />
-          <FireDay active day="F" />
-          <FireDay active day="S" />
+          <FireDay day="T" />
+          <FireDay day="F" />
+          <FireDay day="S" />
           <FireDay day="S" />
         </div>
         <div className="mt-5 md:mt-0">
