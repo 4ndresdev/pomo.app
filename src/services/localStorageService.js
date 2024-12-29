@@ -1,4 +1,4 @@
-const STORAGE_KEY = "tomatifyData";
+const STORAGE_KEY = "pomodoData";
 
 const defaultData = {
   name: "",
