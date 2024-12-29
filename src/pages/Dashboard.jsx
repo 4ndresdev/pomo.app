@@ -1,7 +1,7 @@
 import { getUserData } from "@/services/localStorageService";
-import { Profile } from "@/components/Profile/Profile";
-import { Timer } from "@/components/Timer/Timer";
-import { Tasks } from "@/components/Tasks/Tasks";
+import { Profile } from "@/components/profile/Profile";
+import { Timer } from "@/components/timer/Timer";
+import { Tasks } from "@/components/tasks/Tasks";
 import { useContext } from "react";
 import TimerContext from "@/contexts/TimerContext";
 
