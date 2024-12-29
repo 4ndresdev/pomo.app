@@ -34,7 +34,7 @@ const App = () => {
           </PrivateRoutes>
         }
       />
-      <Route path="*" element={<Navigate to="onboarding" replace />} />
+      <Route path="*" element={<Navigate to="/onboarding" replace />} />
     </Routes>
   );
 };

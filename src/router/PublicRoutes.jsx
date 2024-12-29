@@ -10,7 +10,7 @@ export const PublicRoutes = ({ children }) => {
   useEffect(() => {
     const storedSsOnboardingCompleted = getUserData("isOnboardingCompleted");
     if (storedSsOnboardingCompleted) {
-      navigate("/");
+      navigate("/", { replace: true });
     } else {
       setLoading(false);
     }
