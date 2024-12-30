@@ -13,7 +13,7 @@ const App = () => {
     <Routes>
       <Route
         index
-        path="onboarding"
+        path="/onboarding"
         element={
           <PublicRoutes>
             <OnboardingProvider>
