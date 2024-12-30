@@ -2,13 +2,15 @@
   "name": "pomodoro",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.com/4ndresdev/pomodo-timer",
+  "homepage": "https://4ndresdev.github.io/pomodo-timer/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fontsource/poppins": "^5.1.0",
@@ -22,6 +24,7 @@
     "@nextui-org/theme": "^2.4.1",
     "@number-flow/react": "^0.4.2",
     "framer-motion": "^11.13.1",
+    "gh-pages": "^6.2.0",
     "lucide-react": "^0.468.0",
     "motion": "^11.15.0",
     "react": "^18.3.1",
