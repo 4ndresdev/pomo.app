@@ -9,7 +9,7 @@ import App from "@/App.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <NextUIProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/pomodo-timer">
         <App />
       </BrowserRouter>
     </NextUIProvider>
