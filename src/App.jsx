@@ -13,7 +13,7 @@ const App = () => {
     <Routes>
       <Route
         index
-        path="/onboarding"
+        path="onboarding"
         element={
           <PublicRoutes>
             <OnboardingProvider>
@@ -34,7 +34,7 @@ const App = () => {
           </PrivateRoutes>
         }
       />
-      <Route path="*" element={<Navigate to="/onboarding" replace />} />
+      <Route path="*" element={<Navigate to="onboarding" replace />} />
     </Routes>
   );
 };
