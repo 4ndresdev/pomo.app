@@ -1,8 +1,6 @@
-# GitHub Issues - TanStack Query
-
 Time management application
 
-## Tecnologías usadas
+## Technologies used
 
 - React
 - TailwindCSS
