@@ -48,10 +48,10 @@ export function Timer() {
         </ButtonWithIcon>
       </div>
       <p
-        className={`text-white text-center absolute bottom-0 w-96 mb-8 ${
+        className={`text-white text-center absolute bottom-0 w-96 mb-5 ${
           isFullScreen
-            ? "text-md text-wrap px-5"
-            : "text-sm xl:text-lg hidden xl:flex"
+            ? "text-md text-wrap px-5 mb-8"
+            : "text-sm xl:text-md hidden xl:flex"
         }`}
       >
         &quot;The best way to get started is to quit talking and begin lor sad
