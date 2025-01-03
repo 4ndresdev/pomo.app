@@ -2,7 +2,7 @@
   "name": "pomodoro",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://4ndresdev.github.io/pomodo-timer/",
+  "homepage": "https://4ndresdev.github.io/pomo.app/",
   "type": "module",
   "scripts": {
     "dev": "vite",
