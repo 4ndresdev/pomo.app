@@ -8,7 +8,7 @@ import catiamatos from "@/assets/images/wallpapers/catiamatos.webp";
 import ocean from "@/assets/images/wallpapers/ocean.webp";
 import bridge from "@/assets/images/wallpapers/bridge.webp";
 import OnboardingContext from "@/contexts/OnboardingContext";
-import { useWallpaper } from "@/hooks/useWallpaper";
+import { useWallpaperStep } from "@/hooks/useWallpaperStep";
 
 const WALLPAPERS = [
   { id: "material", src: material, delay: "500ms" },
@@ -34,7 +34,7 @@ const WallpaperOption = ({ id, src, delay, selected, onClick }) => {
 
 const WallpaperStep = () => {
   const { updateWallpaper, wallpaper } = useContext(OnboardingContext);
-  const { handleBack, handleNext, loading } = useWallpaper();
+  const { handleBack, handleNext, loading } = useWallpaperStep();
   return (
     <div className="w-full h-full p-5 flex flex-col items-center gap-2 bg-white rounded-xl shadow-xl fade-in delay-200ms">
       <div className="w-full flex gap-2">
