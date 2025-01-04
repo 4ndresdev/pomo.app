@@ -22,6 +22,17 @@ export default {
         ocean: "url('@/assets/images/wallpapers/ocean.webp')",
       },
     },
+    container: {
+      center: true,
+      padding: "1rem",
+      screens: {
+        sm: "100%",
+        md: "100%",
+        lg: "100%",
+        xl: "1280px",
+        "2xl": "1536px",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

@@ -3,7 +3,7 @@ import OnboardingContext from "@/contexts/OnboardingContext";
 import { useNavigate } from "react-router";
 import { setUserData } from "@/services/localStorageService";
 
-export const useWallpaper = () => {
+export const useWallpaperStep = () => {
   const { setStep } = useContext(OnboardingContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
