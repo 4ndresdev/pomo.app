@@ -39,7 +39,7 @@ export function Timer() {
         >
           <NumberFlow
             value={mm}
-            digits={{ 1: { max: 1 } }}
+            digits={{ 1: { max: 5 } }}
             format={{ minimumIntegerDigits: 2 }}
           />
           <NumberFlow
