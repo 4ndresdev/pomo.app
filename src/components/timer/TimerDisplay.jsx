@@ -1,6 +1,6 @@
 import NumberFlow, { NumberFlowGroup } from "@number-flow/react";
 import TimerContext from "@/contexts/TimerContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 const TimerDisplay = () => {
   const { isFullScreen, mm, ss } = useContext(TimerContext);
@@ -8,7 +8,7 @@ const TimerDisplay = () => {
   return (
     <NumberFlowGroup>
       <div
-        className={`text-white font-bold block ${
+        className={`text-white font-bold block font-sans ${
           isFullScreen
             ? "text-8xl md:text-9xl"
             : "text-7xl xl:text-8xl 2xl:text-9xl"

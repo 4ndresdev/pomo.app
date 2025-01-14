@@ -1,13 +1,26 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import TimerContext from "@/contexts/TimerContext";
 import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
-import { Pause, Play } from "lucide-react";
+import { Pause, Play, RotateCcw } from "lucide-react";
 
 const TimerControls = () => {
-  const { handlePlay, isPlaying } = useContext(TimerContext);
+  const { handlePlay, handleReset, isPlaying, isDirty } =
+    useContext(TimerContext);
 
   return (
-    <div className="controls">
+    <div className="controls flex gap-3">
+      {isPlaying ||
+        (isDirty && (
+          <ButtonWithIcon
+            variant="shadow"
+            color="warning"
+            size="lg"
+            ariaLabel="Reset timer"
+            onPress={handleReset}
+          >
+            <RotateCcw strokeWidth={2} />
+          </ButtonWithIcon>
+        ))}
       <ButtonWithIcon
         variant="shadow"
         color="primary"
