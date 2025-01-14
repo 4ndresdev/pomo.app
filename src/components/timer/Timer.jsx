@@ -4,8 +4,8 @@ import { Expand, Shrink } from "lucide-react";
 import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
 import { Tab, Tabs } from "@nextui-org/tabs";
 import TimerContext from "@/contexts/TimerContext";
-import TimerControls from "./TimerControls";
-import TimerDisplay from "./TimerDisplay";
+import TimerDisplay from "@/components/timer/TimerDisplay";
+import TimerControls from "@/components/timer/TimerControls";
 
 const backgrounds = {
   ocean: "bg-ocean",
@@ -16,7 +16,8 @@ const backgrounds = {
 
 export function Timer() {
   const wallpaper = getUserData("wallpaper");
-  const { isFullScreen, handleFullScreen, mm, ss } = useContext(TimerContext);
+  const { isFullScreen, handleFullScreen, timerTab, setTimerTab } =
+    useContext(TimerContext);
 
   const activeFullScreenClasses = isFullScreen
     ? "fixed top-0 left-0 w-screen h-screen z-50 h-svh"
@@ -25,7 +26,12 @@ export function Timer() {
     <div
       className={`${backgrounds[wallpaper]} bg-cover bg-center flex flex-col justify-center items-center gap-5 ${activeFullScreenClasses}`}
     >
-      <Tabs aria-label="" size="sm">
+      <Tabs
+        aria-label="Timer tabs"
+        size="sm"
+        selectedKey={timerTab}
+        onSelectionChange={setTimerTab}
+      >
         <Tab key="focus" title="Focus 🔥" />
         <Tab key="break" title="Break" />
       </Tabs>
