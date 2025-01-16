@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useContext, useMemo } from "react";
 import { getUserData } from "@/services/localStorageService";
 import { Expand, Shrink } from "lucide-react";
 import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
@@ -20,11 +20,11 @@ export function Timer() {
   const { isFullScreen, handleFullScreen, timerTab, setTimerTab } =
     useContext(TimerContext);
 
-  const motivationalPhrase = useCallback(getRandomPhrase(), []);
+  const motivationalPhrase = useMemo(() => getRandomPhrase(), []);
 
   const activeFullScreenClasses = isFullScreen
     ? "fixed top-0 left-0 w-screen h-screen z-50 h-svh"
-    : "w-full h-96 md:h-full border-5 border-white rounded-2xl shadow-xl relative";
+    : "w-full h-96 lg:h-full border-5 border-white rounded-2xl shadow-xl relative";
   return (
     <div
       className={`${backgrounds[wallpaper]} bg-cover bg-center flex flex-col justify-center items-center gap-5 ${activeFullScreenClasses}`}
