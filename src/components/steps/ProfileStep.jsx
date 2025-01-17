@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
-import { Avatar } from "@nextui-org/avatar";
+import { Avatar } from "@heroui/avatar";
 import avatar from "@/assets/avatars/avatar.png";
 import FileUpload from "@/components/ui/FileUpload";
 import { useProfileStep } from "@/hooks/useProfileStep";

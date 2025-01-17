@@ -1,5 +1,5 @@
 import { getUserData } from "@/services/localStorageService";
-import { Avatar } from "@nextui-org/avatar";
+import { Avatar } from "@heroui/avatar";
 import defaultAvatar from "@/assets/avatars/avatar.png";
 import { FireDay } from "@/components/ui/FireDay";
 import { CurrentTask } from "@/components/profile/CurrentTask";

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Image } from "@nextui-org/react";
+import { Image } from "@heroui/react";
 import fire from "@/assets/images/fire.png";
 
 export function FireDay({ day, active = false }) {

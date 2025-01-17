@@ -14,6 +14,7 @@ export function TimerProvider({ children }) {
   const [isDirty, setIsDirty] = useState(false);
   const [timerTab, setTimerTab] = useState("focus");
   const [timeLeft, setTimeLeft] = useState(DEFAULT_TIMER);
+  const [confirmAlert, setConfirmAlert] = useState(false);
 
   function handlePlay() {
     setIsPlaying((prevState) => !prevState);
@@ -44,6 +45,7 @@ export function TimerProvider({ children }) {
     if (isPlaying) {
       const interval = setInterval(() => {
         if (timeLeft === 0) {
+          setConfirmAlert(false);
           fireworks();
           setIsPlaying(false);
           handleReset();
@@ -57,18 +59,39 @@ export function TimerProvider({ children }) {
     }
   }, [isPlaying, timeLeft, handleReset]);
 
-  useEffect(() => {
-    if (timerTab === "focus") {
-      setTimeLeft(DEFAULT_TIMER);
-    } else {
-      setTimeLeft(DEFAULT_BREAK_TIMER);
-    }
-  }, [timerTab]);
-
   function handleFullScreen() {
     setIsFullScreen((prevState) => !prevState);
     setUserData("isFullScreen", !isFullScreen);
   }
+
+  const handleConfirmAlert = useCallback(() => {
+    setConfirmAlert(false);
+    if (timerTab === "focus") {
+      setTimerTab("break");
+      setTimeLeft(DEFAULT_BREAK_TIMER);
+    } else {
+      setTimerTab("focus");
+      setTimeLeft(DEFAULT_TIMER);
+    }
+    setIsPlaying(false);
+    setIsDirty(false);
+  }, [timerTab]);
+
+  const handleTabChange = useCallback(
+    (tab) => {
+      if (isPlaying && tab !== timerTab) {
+        setConfirmAlert(true);
+      } else {
+        setTimerTab(tab);
+        if (tab === "focus") {
+          setTimeLeft(DEFAULT_TIMER);
+        } else {
+          setTimeLeft(DEFAULT_BREAK_TIMER);
+        }
+      }
+    },
+    [isPlaying, timerTab]
+  );
 
   const mm = Math.floor((timeLeft % 3600) / 60);
   const ss = timeLeft % 60;
@@ -86,7 +109,10 @@ export function TimerProvider({ children }) {
         isPlaying,
         isDirty,
         timerTab,
-        setTimerTab,
+        handleTabChange,
+        confirmAlert,
+        setConfirmAlert,
+        handleConfirmAlert,
       }}
     >
       {children}
