@@ -79,10 +79,16 @@ export function TimerProvider({ children }) {
 
   const handleTabChange = useCallback(
     (tab) => {
-      if (isPlaying && tab !== timerTab) {
+      if (tab === timerTab) return;
+      const timerLeftTab =
+        timerTab === "focus" ? DEFAULT_TIMER : DEFAULT_BREAK_TIMER;
+      if (isPlaying) {
+        setConfirmAlert(true);
+      } else if (timeLeft < timerLeftTab) {
         setConfirmAlert(true);
       } else {
         setTimerTab(tab);
+        setIsDirty(false);
         if (tab === "focus") {
           setTimeLeft(DEFAULT_TIMER);
         } else {
@@ -90,7 +96,7 @@ export function TimerProvider({ children }) {
         }
       }
     },
-    [isPlaying, timerTab]
+    [isPlaying, timerTab, timeLeft]
   );
 
   const mm = Math.floor((timeLeft % 3600) / 60);
