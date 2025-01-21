@@ -30,15 +30,22 @@ function AlertConfirm({
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1 font-sans">
+              {title}
+            </ModalHeader>
             <ModalBody>
-              <p>{message}</p>
+              <p className="font-sans">{message}</p>
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
+              <Button
+                className="font-sans"
+                color="danger"
+                variant="light"
+                onPress={onClose}
+              >
                 {cancelText}
               </Button>
-              <Button color="primary" onPress={onConfirm}>
+              <Button className="font-sans" color="primary" onPress={onConfirm}>
                 {confirmText}
               </Button>
             </ModalFooter>
