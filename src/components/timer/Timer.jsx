@@ -31,7 +31,7 @@ export function Timer() {
   const motivationalPhrase = useMemo(() => getRandomPhrase(), []);
 
   const activeFullScreenClasses = isFullScreen
-    ? "fixed top-0 left-0 w-screen h-screen z-50 h-svh"
+    ? "fixed top-0 left-0 w-screen h-screen z-10 h-svh"
     : "w-full h-96 lg:h-full border-5 border-white rounded-2xl shadow-xl relative";
   return (
     <>
@@ -80,7 +80,6 @@ export function Timer() {
         isOpen={confirmAlert}
         onClose={setConfirmAlert}
         onConfirm={handleConfirmAlert}
-        size="sm"
       />
     </>
   );

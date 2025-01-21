@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { createContext, useCallback, useEffect, useState } from "react";
 import { getUserData, setUserData } from "@/services/localStorageService";
 import { fireworks } from "@/utils/confetti";
+import useSound from "use-sound";
+import completedSound from "@/assets/sounds/completedSound.mp3";
 
 const TimerContext = createContext();
 
@@ -9,6 +11,7 @@ const DEFAULT_TIMER = 1500;
 const DEFAULT_BREAK_TIMER = 10;
 
 export function TimerProvider({ children }) {
+  const [play] = useSound(completedSound);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
@@ -45,19 +48,19 @@ export function TimerProvider({ children }) {
     if (isPlaying) {
       const interval = setInterval(() => {
         if (timeLeft === 0) {
+          play();
           setConfirmAlert(false);
           fireworks();
           setIsPlaying(false);
           handleReset();
           return;
         }
-
         setTimeLeft((prevState) => prevState - 1);
       }, 1000);
 
       return () => clearInterval(interval);
     }
-  }, [isPlaying, timeLeft, handleReset]);
+  }, [isPlaying, timeLeft, handleReset, play, timerTab]);
 
   function handleFullScreen() {
     setIsFullScreen((prevState) => !prevState);
@@ -95,6 +98,10 @@ export function TimerProvider({ children }) {
 
   const mm = Math.floor((timeLeft % 3600) / 60);
   const ss = timeLeft % 60;
+
+  document.title = `${mm}:${ss < 10 ? `0${ss}` : ss} Pomo.app ${
+    timerTab === "focus" ? "🔥" : "❄️"
+  }`;
 
   return (
     <TimerContext.Provider
