@@ -16,7 +16,10 @@ const App = () => {
         element={
           <PublicRoutes>
             <OnboardingProvider>
-              <Toaster />
+              <Toaster
+                position="bottom-right"
+                toastOptions={{ className: "font-sans text-sm" }}
+              />
               <Onboarding />
             </OnboardingProvider>
           </PublicRoutes>
@@ -27,7 +30,10 @@ const App = () => {
         element={
           <PrivateRoutes>
             <TimerProvider>
-              <Toaster />
+              <Toaster
+                position="bottom-right"
+                toastOptions={{ className: "font-sans text-sm" }}
+              />
               <Dashboard />
             </TimerProvider>
           </PrivateRoutes>
