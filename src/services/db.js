@@ -6,51 +6,35 @@ import { userSchema } from "@/schemas/user.schema";
 import { progressSchema } from "@/schemas/progress.schema";
 
 let db = null;
+const DATABASE_NAME = "pomo";
 
-export async function createDatabase() {
+export async function database() {
+  if (db) return db;
+
   if (import.meta.env.MODE === "development") {
     await import("rxdb/plugins/dev-mode").then((module) =>
       addRxPlugin(module.RxDBDevModePlugin)
     );
   }
 
-  if (db) {
-    return db;
-  }
-
   db = await createRxDatabase({
-    name: "pomo",
+    name: DATABASE_NAME,
     storage: wrappedValidateAjvStorage({
       storage: getRxStorageDexie(),
     }),
     multiInstance: true,
     eventReduce: true,
+    ignoreDuplicate: true,
   });
 
-  const existingCollections = Object.keys(db.collections);
+  const collections = {
+    user: { schema: userSchema },
+    tasks: { schema: taskSchema },
+    progress: { schema: progressSchema },
+  };
 
-  if (!existingCollections.includes("user")) {
-    await db.addCollections({
-      user: {
-        schema: userSchema,
-      },
-    });
-  }
-
-  if (!existingCollections.includes("tasks")) {
-    await db.addCollections({
-      tasks: {
-        schema: taskSchema,
-      },
-    });
-  }
-
-  if (!existingCollections.includes("progress")) {
-    await db.addCollections({
-      progress: {
-        schema: progressSchema,
-      },
-    });
+  for (const [key, value] of Object.entries(collections)) {
+    await db.addCollections({ [key]: value });
   }
 
   return db;

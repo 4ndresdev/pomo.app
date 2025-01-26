@@ -27,6 +27,18 @@ export const userSchema = {
       type: "boolean",
       default: false,
     },
+    focusTime: {
+      type: "number",
+      default: 1500,
+    },
+    shortBreakTime: {
+      type: "number",
+      default: 300,
+    },
+    theme: {
+      type: "string",
+      default: "light",
+    },
   },
   required: ["id", "name"],
 };
