@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import NameStep from "@/components/steps/NameStep";
 import ProfileStep from "@/components/steps/ProfileStep";
 import WallpaperStep from "@/components/steps/WallpaperStep";
-import { setUserData } from "@/services/localStorageService";
+import { setUserData } from "@/services/db/user.db";
 
 const OnboardingContext = createContext();
 
@@ -35,9 +35,9 @@ export const OnboardingProvider = ({ children }) => {
     }
   }, []);
 
-  const updateWallpaper = useCallback((newWallpaper) => {
+  const updateWallpaper = useCallback(async (newWallpaper) => {
     setWallpaper(newWallpaper);
-    setUserData("wallpaper", newWallpaper);
+    await setUserData({ wallpaper: newWallpaper });
   }, []);
 
   const nextStep = useCallback(() => {
