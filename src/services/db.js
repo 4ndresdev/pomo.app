@@ -7,11 +7,12 @@ import { progressSchema } from "@/schemas/progress.schema";
 
 let db = null;
 const DATABASE_NAME = "pomo";
+const MODE = import.meta.env.MODE || "development";
 
 export async function database() {
   if (db) return db;
 
-  if (import.meta.env.MODE === "development") {
+  if (MODE === "development") {
     await import("rxdb/plugins/dev-mode").then((module) =>
       addRxPlugin(module.RxDBDevModePlugin)
     );
@@ -24,7 +25,7 @@ export async function database() {
     }),
     multiInstance: true,
     eventReduce: true,
-    ignoreDuplicate: true,
+    ignoreDuplicate: MODE === "development",
   });
 
   const collections = {
