@@ -1,5 +1,11 @@
 import PropTypes from "prop-types";
-import { createContext, useCallback, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+} from "react";
 import { getUserData, setUserData } from "@/services/db/user.db";
 import { fireworks } from "@/utils/confetti";
 import useSound from "use-sound";
@@ -8,7 +14,7 @@ import completedSound from "@/assets/sounds/completedSound.mp3";
 const TimerContext = createContext();
 
 const DEFAULT_TIMER = 1500;
-const DEFAULT_BREAK_TIMER = 10;
+const DEFAULT_BREAK_TIMER = 300;
 
 export function TimerProvider({ children }) {
   const [play] = useSound(completedSound);
@@ -27,12 +33,7 @@ export function TimerProvider({ children }) {
   const handleReset = useCallback(() => {
     setIsPlaying(false);
     setIsDirty(false);
-
-    if (timerTab === "focus") {
-      setTimeLeft(DEFAULT_TIMER);
-    } else {
-      setTimeLeft(DEFAULT_BREAK_TIMER);
-    }
+    setTimeLeft(timerTab === "focus" ? DEFAULT_TIMER : DEFAULT_BREAK_TIMER);
   }, [timerTab]);
 
   useEffect(() => {
@@ -55,7 +56,11 @@ export function TimerProvider({ children }) {
           setConfirmAlert(false);
           fireworks();
           setIsPlaying(false);
-          handleReset();
+          setIsDirty(false);
+          setTimerTab((prevTab) => (prevTab === "focus" ? "break" : "focus"));
+          setTimeLeft(
+            timerTab === "focus" ? DEFAULT_BREAK_TIMER : DEFAULT_TIMER
+          );
           return;
         }
         setTimeLeft((prevState) => prevState - 1);
@@ -63,7 +68,7 @@ export function TimerProvider({ children }) {
 
       return () => clearInterval(interval);
     }
-  }, [isPlaying, timeLeft, handleReset, play, timerTab]);
+  }, [isPlaying, timeLeft, play, timerTab]);
 
   async function handleFullScreen() {
     setIsFullScreen((prevState) => !prevState);
@@ -72,13 +77,8 @@ export function TimerProvider({ children }) {
 
   const handleConfirmAlert = useCallback(() => {
     setConfirmAlert(false);
-    if (timerTab === "focus") {
-      setTimerTab("break");
-      setTimeLeft(DEFAULT_BREAK_TIMER);
-    } else {
-      setTimerTab("focus");
-      setTimeLeft(DEFAULT_TIMER);
-    }
+    setTimerTab((prevTab) => (prevTab === "focus" ? "break" : "focus"));
+    setTimeLeft(timerTab === "focus" ? DEFAULT_BREAK_TIMER : DEFAULT_TIMER);
     setIsPlaying(false);
     setIsDirty(false);
   }, [timerTab]);
@@ -89,22 +89,23 @@ export function TimerProvider({ children }) {
         setConfirmAlert(true);
       } else {
         setTimerTab(tab);
-        if (tab === "focus") {
-          setTimeLeft(DEFAULT_TIMER);
-        } else {
-          setTimeLeft(DEFAULT_BREAK_TIMER);
-        }
+        setTimeLeft(tab === "focus" ? DEFAULT_TIMER : DEFAULT_BREAK_TIMER);
       }
     },
     [isPlaying, timerTab]
   );
 
-  const mm = Math.floor((timeLeft % 3600) / 60);
-  const ss = timeLeft % 60;
+  const formattedTime = useMemo(() => {
+    const mm = Math.floor((timeLeft % 3600) / 60);
+    const ss = timeLeft % 60;
+    return `${mm}:${ss < 10 ? `0${ss}` : ss}`;
+  }, [timeLeft]);
 
-  document.title = `${mm}:${ss < 10 ? `0${ss}` : ss} Pomo.app ${
-    timerTab === "focus" ? "🔥" : "❄️"
-  }`;
+  useEffect(() => {
+    document.title = `${formattedTime} Pomo.app ${
+      timerTab === "focus" ? "🔥" : "❄️"
+    }`;
+  }, [formattedTime, timerTab]);
 
   return (
     <TimerContext.Provider
@@ -114,8 +115,8 @@ export function TimerProvider({ children }) {
         handleFullScreen,
         handlePlay,
         handleReset,
-        mm,
-        ss,
+        mm: Math.floor((timeLeft % 3600) / 60),
+        ss: timeLeft % 60,
         isPlaying,
         isDirty,
         timerTab,
