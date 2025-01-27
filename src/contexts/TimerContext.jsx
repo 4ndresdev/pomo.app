@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { createContext, useCallback, useEffect, useState } from "react";
-import { getUserData, setUserData } from "@/services/localStorageService";
+import { getUserData, setUserData } from "@/services/db/user.db";
 import { fireworks } from "@/utils/confetti";
 import useSound from "use-sound";
 import completedSound from "@/assets/sounds/completedSound.mp3";
@@ -36,12 +36,15 @@ export function TimerProvider({ children }) {
   }, [timerTab]);
 
   useEffect(() => {
-    const isFullScreenStored = getUserData("isFullScreen");
-    if (isFullScreenStored) {
-      setIsFullScreen(true);
-    } else {
-      setIsFullScreen(false);
+    async function fetchData() {
+      const isFullScreenStored = await getUserData("isFullScreen");
+      if (isFullScreenStored) {
+        setIsFullScreen(true);
+      } else {
+        setIsFullScreen(false);
+      }
     }
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -62,9 +65,9 @@ export function TimerProvider({ children }) {
     }
   }, [isPlaying, timeLeft, handleReset, play, timerTab]);
 
-  function handleFullScreen() {
+  async function handleFullScreen() {
     setIsFullScreen((prevState) => !prevState);
-    setUserData("isFullScreen", !isFullScreen);
+    await setUserData({ isFullScreen: !isFullScreen });
   }
 
   const handleConfirmAlert = useCallback(() => {

@@ -39,8 +39,8 @@ const useCloudinary = () => {
         body: formData,
       });
       return await response.json();
-    } catch (error) {
-      toast.error(`Error uploading image: ${error.message}`);
+    } catch {
+      toast.error("Error uploading image");
     } finally {
       setLoading(false);
     }

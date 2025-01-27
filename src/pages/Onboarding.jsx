@@ -1,13 +1,7 @@
 import { useContext } from "react";
 import { Progress } from "@heroui/react";
 import OnboardingContext from "@/contexts/OnboardingContext";
-
-const backgrounds = {
-  ocean: "bg-ocean",
-  catiamatos: "bg-catiamatos",
-  material: "bg-material",
-  bridge: "bg-bridge",
-};
+import { BACKGROUNDS } from "@/constants/styleConstants";
 
 const Onboarding = () => {
   const { step, totalSteps, currentStep, wallpaper } =
@@ -15,7 +9,7 @@ const Onboarding = () => {
 
   return (
     <div
-      className={`w-screen h-dvh overflow-hidden flex justify-center items-center ${backgrounds[wallpaper]} bg-cover bg-center`}
+      className={`w-screen h-dvh overflow-hidden flex justify-center items-center ${BACKGROUNDS[wallpaper]} bg-cover bg-center`}
     >
       <div className="absolute z-10 w-[95%] max-w-sm mt-[-2rem]">
         {currentStep.component}

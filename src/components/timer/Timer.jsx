@@ -1,5 +1,5 @@
-import { useContext, useMemo } from "react";
-import { getUserData } from "@/services/localStorageService";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { getUserData } from "@/services/db/user.db";
 import { Expand, Shrink } from "lucide-react";
 import ButtonWithIcon from "@/components/ui/ButtonWithIcon";
 import { Tab, Tabs } from "@heroui/tabs";
@@ -8,16 +8,11 @@ import TimerDisplay from "@/components/timer/TimerDisplay";
 import TimerControls from "@/components/timer/TimerControls";
 import { getRandomPhrase } from "@/utils/getRandomPhrase";
 import AlertConfirm from "@/components/ui/AlertConfirm";
-
-const backgrounds = {
-  ocean: "bg-ocean",
-  catiamatos: "bg-catiamatos",
-  material: "bg-material",
-  bridge: "bg-bridge",
-};
+import Loading from "@/components/ui/Loading";
+import { BACKGROUNDS } from "@/constants/styleConstants";
 
 export function Timer() {
-  const wallpaper = getUserData("wallpaper");
+  const [wallpaper, setWallpaper] = useState(null);
   const {
     isFullScreen,
     handleFullScreen,
@@ -33,10 +28,23 @@ export function Timer() {
   const activeFullScreenClasses = isFullScreen
     ? "fixed top-0 left-0 w-screen h-screen z-10 h-svh"
     : "w-full h-96 lg:h-full border-5 border-white rounded-2xl shadow-xl relative";
+
+  useEffect(() => {
+    async function fetchData() {
+      const storedWallpaper = await getUserData("wallpaper");
+      if (storedWallpaper) {
+        setWallpaper(storedWallpaper);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (!wallpaper) return <Loading />;
+
   return (
     <>
       <div
-        className={`${backgrounds[wallpaper]} bg-cover bg-center flex flex-col justify-center items-center gap-5 ${activeFullScreenClasses}`}
+        className={`${BACKGROUNDS[wallpaper]} bg-cover bg-center flex flex-col justify-center items-center gap-5 ${activeFullScreenClasses}`}
       >
         <Tabs
           aria-label="Timer tabs"

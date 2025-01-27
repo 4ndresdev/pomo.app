@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState, useEffect } from "react";
 import OnboardingContext from "@/contexts/OnboardingContext";
-import { setUserData, getUserData } from "@/services/localStorageService";
+import { getUserData, setUserData } from "@/services/db/user.db";
 
 export const useProfileStep = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -15,16 +15,22 @@ export const useProfileStep = () => {
   }, [setStep]);
 
   useEffect(() => {
-    const avatar = getUserData("avatar");
-    if (avatar) {
-      setSelectedFile(avatar);
+    async function fetchData() {
+      const avatar = await getUserData("avatar");
+      if (avatar) {
+        setSelectedFile(avatar);
+      }
     }
+    fetchData();
   }, []);
 
   useEffect(() => {
-    if (selectedFile) {
-      setUserData("avatar", selectedFile);
+    async function saveData() {
+      if (selectedFile) {
+        await setUserData({ avatar: selectedFile });
+      }
     }
+    saveData();
   }, [selectedFile]);
 
   return {

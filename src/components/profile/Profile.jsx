@@ -1,23 +1,32 @@
-import { getUserData } from "@/services/localStorageService";
+import { useEffect, useState } from "react";
+import { getUserData } from "@/services/db/user.db";
 import { Avatar } from "@heroui/avatar";
 import defaultAvatar from "@/assets/avatars/avatar.png";
 import { FireDay } from "@/components/ui/FireDay";
 import { CurrentTask } from "@/components/profile/CurrentTask";
-
-const backgrounds = {
-  ocean: "bg-ocean",
-  catiamatos: "bg-catiamatos",
-  material: "bg-material",
-  bridge: "bg-bridge",
-};
+import Loading from "@/components/ui/Loading";
+import { BACKGROUNDS } from "@/constants/styleConstants";
 
 export function Profile() {
-  const wallpaper = getUserData("wallpaper");
-  const avatar = getUserData("avatar");
-  const name = getUserData("name");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const storedUser = await getUserData("all", true);
+      if (storedUser) {
+        setUser(storedUser);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (!user) return <Loading />;
+
+  const { name, avatar, wallpaper } = user;
+
   return (
     <div
-      className={`w-full h-full ${backgrounds[wallpaper]} bg-cover bg-center rounded-2xl shadow-2xl border-5 border-white relative`}
+      className={`w-full h-full ${BACKGROUNDS[wallpaper]} bg-cover bg-center rounded-2xl shadow-2xl border-5 border-white relative`}
     >
       <div className="flex justify-between items-center p-5">
         <div className="flex flex-col gap-1">

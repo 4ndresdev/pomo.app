@@ -2,10 +2,13 @@ import { database } from "@/services/db";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 
-export async function getUserData(key) {
+export async function getUserData(key, all = false) {
   try {
     const db = await database();
     const user = await db.user.findOne().exec();
+
+    if (all) return user;
+
     return user ? user[key] : null;
   } catch {
     toast.error("Error getting user data, try again in a few minutes");

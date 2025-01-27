@@ -1,7 +1,8 @@
 import { useCallback, useContext, useState } from "react";
 import OnboardingContext from "@/contexts/OnboardingContext";
 import { useNavigate } from "react-router";
-import { setUserData } from "@/services/localStorageService";
+import { setUserData } from "@/services/db/user.db";
+import { wait } from "@/utils/wait";
 
 export const useWallpaperStep = () => {
   const { setStep } = useContext(OnboardingContext);
@@ -12,12 +13,18 @@ export const useWallpaperStep = () => {
     setStep((step) => step - 1);
   }, [setStep]);
 
-  const handleNext = useCallback(() => {
+  const handleNext = useCallback(async () => {
     setLoading(true);
-    new Promise((resolve) => setTimeout(resolve, 3000)).then(() => {
-      setUserData("isOnboardingCompleted", true);
-      navigate("/", { replace: true });
-    });
+    const user = await setUserData({ isOnboardingCompleted: true });
+
+    await wait(5000);
+
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+
+    navigate("/", { replace: true });
   }, [navigate]);
 
   return {
