@@ -6,6 +6,7 @@ import { Tasks } from "@/components/tasks/Tasks";
 import TimerContext from "@/contexts/TimerContext";
 import Loading from "@/components/ui/Loading";
 import { BACKGROUNDS } from "@/constants/styleConstants";
+import Dock from "@/components/ui/Dock";
 
 const Dashboard = () => {
   const [wallpaper, setWallpaper] = useState(null);
@@ -44,6 +45,7 @@ const Dashboard = () => {
           <Tasks />
         </div>
       </div>
+      <Dock />
     </div>
   );
 };
