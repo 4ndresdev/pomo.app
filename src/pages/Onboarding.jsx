@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Progress } from "@heroui/react";
+import { Progress } from "@heroui/progress";
 import OnboardingContext from "@/contexts/OnboardingContext";
 import { BACKGROUNDS } from "@/constants/styleConstants";
 
