@@ -13,14 +13,17 @@ export const taskSchema = {
       type: "string",
       ref: "user",
     },
-    title: {
+    task: {
+      type: "string",
+    },
+    detail: {
       type: "string",
     },
     completed: {
       type: "boolean",
       default: false,
     },
-    prioriry: {
+    priority: {
       type: "string",
       enum: ["low", "medium", "high"],
       default: "low",
@@ -31,5 +34,5 @@ export const taskSchema = {
       default: "others",
     },
   },
-  required: ["id", "title", "userId"],
+  required: ["id", "task", "userId"],
 };
