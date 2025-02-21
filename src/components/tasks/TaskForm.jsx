@@ -1,59 +1,88 @@
-import { useState } from "react";
-import { Form, Input, Button } from "@heroui/react";
+import {
+  Form,
+  Button,
+  Select,
+  SelectItem,
+  Textarea,
+  Input,
+} from "@heroui/react";
+import useTask from "@/hooks/useTask";
 
 export function TaskForm() {
-  const [submitted, setSubmitted] = useState(null);
-
+  const { createTask, loading } = useTask();
   const onSubmit = (e) => {
     e.preventDefault();
-
     const data = Object.fromEntries(new FormData(e.currentTarget));
-
-    setSubmitted(data);
+    createTask(data);
   };
 
   return (
     <Form
-      className="w-full max-w-xs"
+      className="w-full justify-center items-center space-y-4"
       validationBehavior="native"
       onSubmit={onSubmit}
     >
-      <Input
-        isRequired
-        errorMessage="Task name is required"
-        label="Task Name"
-        labelPlacement="inside"
-        name="task"
-        placeholder="Enter task name"
-        type="text"
-        isClearable
-        size="md"
-        classNames={{
-          label: "!text-white",
-          input: "bg-transparent !text-white",
-          innerWrapper: "bg-transparent",
-          inputWrapper: [
-            "shadow-xl",
-            "bg-default-200/50",
-            "dark:bg-default/60",
-            "backdrop-blur-xl",
-            "backdrop-saturate-200",
-            "hover:bg-default-200/70",
-            "hover:bg-red-500/70",
-            "group-data-[focus=true]:bg-default-200/50",
-            "dark:group-data-[focus=true]:bg-default/60",
-            "!cursor-text",
-          ],
-        }}
-      />
-      <Button type="submit" color="warning">
-        Create Task
-      </Button>
-      {submitted && (
-        <div className="text-small text-default-500">
-          You submitted: <code>{JSON.stringify(submitted)}</code>
+      <div className="w-full flex flex-col gap-4 max-w-md">
+        <Input
+          errorMessage="Task name is required"
+          label="Task Name"
+          labelPlacement="inside"
+          name="task"
+          placeholder="Write your task"
+          size="lg"
+          radius="sm"
+          autoComplete="off"
+          isRequired
+        />
+        <Textarea
+          name="detail"
+          label="Detail"
+          placeholder="Enter your task details"
+          errorMessage="Task detail is required"
+          labelPlacement="inside"
+          size="lg"
+          required
+        />
+
+        <div className="grid grid-cols-2 gap-4">
+          <Select
+            name="priority"
+            label="Priority"
+            placeholder="Select a priority"
+            defaultSelectedKeys={["low"]}
+            required
+          >
+            <SelectItem key="low">Low</SelectItem>
+            <SelectItem key="medium">Medium</SelectItem>
+            <SelectItem key="high">High</SelectItem>
+          </Select>
+          <Select
+            name="category"
+            label="Category"
+            placeholder="Select a category"
+            defaultSelectedKeys={["work"]}
+            required
+          >
+            <SelectItem key="work">Work</SelectItem>
+            <SelectItem key="personal">Personal</SelectItem>
+            <SelectItem key="others">Others</SelectItem>
+          </Select>
         </div>
-      )}
+
+        <div className="flex gap-4">
+          <Button
+            className="w-full"
+            color="primary"
+            type="submit"
+            isLoading={loading}
+          >
+            Create task
+          </Button>
+          <Button type="reset" variant="bordered">
+            Reset
+          </Button>
+        </div>
+      </div>
     </Form>
   );
 }
